@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.DS_Store
+coverage/
+*.log
+incident-command-dev.pid
+screenshots/*.html

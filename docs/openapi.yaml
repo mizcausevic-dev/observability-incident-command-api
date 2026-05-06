@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: Observability Incident Command API
+  version: 1.0.0
+  description: >
+    Recruiter-ready API for incident severity analysis, escalation routing,
+    responder visibility, and incident-command decision support.
+servers:
+  - url: http://localhost:3000
+paths:
+  /health:
+    get:
+      summary: Service health status
+      responses:
+        '200':
+          description: Healthy service response
+  /api/services:
+    get:
+      summary: List services
+      responses:
+        '200':
+          description: Array of service records
+  /api/incidents:
+    get:
+      summary: List incidents
+      responses:
+        '200':
+          description: Array of incident records
+  /api/incidents/{id}:
+    get:
+      summary: Get one incident
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Incident record
+        '404':
+          description: Incident not found
+  /api/alerts:
+    get:
+      summary: List alerts
+      responses:
+        '200':
+          description: Array of alert records
+  /api/responders:
+    get:
+      summary: List responders
+      responses:
+        '200':
+          description: Array of responder records
+  /api/playbooks:
+    get:
+      summary: List incident playbooks
+      responses:
+        '200':
+          description: Array of playbook records
+  /api/dashboard/summary:
+    get:
+      summary: Dashboard summary view
+      responses:
+        '200':
+          description: Aggregate incident-command summary
+  /api/analyze/incident:
+    post:
+      summary: Analyze incident severity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Incident analysis result
+  /api/analyze/escalation:
+    post:
+      summary: Analyze escalation posture
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Escalation analysis result
+  /api/analyze/playbook:
+    post:
+      summary: Recommend an incident playbook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Playbook recommendation result
